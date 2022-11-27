@@ -2,7 +2,13 @@
 
 <html>
   <head>
-    <link rel="stylesheet" href="/templates/tester.css">
+    <link rel="stylesheet" href="/templates/tester.css">   
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("index.html"); 
+    });
+    </script>  
   </head>
   <body>
 <div class="myHead5">ECC Diffie Hellman</div>
@@ -12,7 +18,7 @@
             </div>
    <div class="linkDiv">
     <div class="hidden2">
-        <img src="/templates/IPhone_X_vector.svg">
+      <div id="includedContent"></div>
         <div class="hidden4">
             <form action="/" method="post">
             <input type="text" name="fname" value="" size="17" placeholder="Your Message">
