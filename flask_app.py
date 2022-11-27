@@ -3,6 +3,7 @@ from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
 socketio = SocketIO(app)
+app.static_folder = 'static'
 
 @socketio.on('message')
 def encrypt(msg):
