@@ -9,7 +9,7 @@ def encrypt(msg):
     send(msg, broadcast=True)
 
 @app.route('/')
-    def home():
-        return app.send_static_file('index.html')
+def home():
+    return render_template('index.html')
 
 
