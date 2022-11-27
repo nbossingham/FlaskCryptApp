@@ -28,7 +28,7 @@
 	});
 
 	socket.on('message', function(msg) {
-		$("#messages").append('<li>'+msg+'</li>');
+		$("#messages").prepend('<li>'+msg+'</li>');
 		console.log('Received message');
 	});
 
