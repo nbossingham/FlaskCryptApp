@@ -6,7 +6,7 @@
     <script src="jquery.js"></script> 
     <script> 
     $(function(){
-      $("#includedContent").load("index.html"); 
+      $("#includedContent").load("{{ url_for('templates', filename='index.html') }}"); 
     });
     </script>  
   </head>
