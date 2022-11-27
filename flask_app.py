@@ -12,6 +12,8 @@ def encrypt(msg):
 @app.route('/')
 def home():
     userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY = diffieHellmanECC()
+
+    
     return render_template('test.html',userPrivate=userPrivate,userPublicX=userPublicX,userPublicY=userPublicY,userSharedX=userSharedX,userSharedY=userSharedY,botPrivate=botPrivate,botPublicX=botPublicX,botPublicY=botPublicY,botSharedX=botSharedX,botSharedY=botSharedY)
 
 
