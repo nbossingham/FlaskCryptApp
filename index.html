@@ -8,7 +8,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-	var socket = io.connect('nbossingham.onrender.com');
+	var socket = io.connect('https://nbossingham.onrender.com/');
 
 	socket.on('connect', function() {
 		socket.send('User has connected!');
