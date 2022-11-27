@@ -8,6 +8,8 @@ socketio = SocketIO(app)
 def encrypt(msg):
     send(msg, broadcast=True)
 
-return socketio
+@app.route('/')
+    def home():
+        return app.send_static_file('index.html')
 
 
