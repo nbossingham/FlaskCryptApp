@@ -227,3 +227,14 @@ a:link, a:visited {
     text-align: center;
     padding: 2px 2px;
   }
+ul{
+    list-style: none;
+}
+ul li {
+    color: white;
+    list-style: none;
+    background-color: #2294fb;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #2294fb;
+}
