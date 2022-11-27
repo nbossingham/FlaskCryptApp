@@ -228,7 +228,6 @@ a:link, a:visited {
     padding: 2px 2px;
   }
 ul{
-  height: 100px;
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
