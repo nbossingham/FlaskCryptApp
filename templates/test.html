@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <link rel="stylesheet" href="/static/stylesheets/tester.css">   
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/tester.css') }}">   
     <script src="jquery.js"></script> 
     <script> 
     $(function(){
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="hidden2">
-        <img src="/static/images/IPhone_X_vector.svg">
+        <img src="{{ url_for('static', filename='images/IPhone_X_vector.svg') }}">
 
 
     </div>
