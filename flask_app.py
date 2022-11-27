@@ -8,6 +8,6 @@ socketio = SocketIO(app)
 def encrypt(msg):
     send(msg, broadcast=True)
 
-
+return socketio
 
 
