@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, make_response
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
-socketio = socketIO(app)
+socketio = SocketIO(app)
 
 @socketio.on('message')
 def encrypt(msg):
