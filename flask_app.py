@@ -129,6 +129,13 @@ def diffieHellmanECC():
     
     return userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY
 
+userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY = diffieHellmanECC()
+	
+    userPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>Public X:</b> 0x{userPublicX:X}<br> <b>Public Y:</b> 0x{userPublicY:X}"
+    botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
+    userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
+    botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
+	
 def encryptMsg(msg):
 	
 	msg=f"Encrypted: {msg}"
