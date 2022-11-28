@@ -139,6 +139,7 @@ ul li {
     border-style: solid;
     border-color: #white;
     border-width: 1px;
+    overflow: visible;
 }
 nav ul{
   
