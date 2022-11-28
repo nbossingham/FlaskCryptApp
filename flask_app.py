@@ -110,16 +110,16 @@ def diffieHellmanECC():
     userPrivate = random.randrange(1,order-1)
     
     userPublicX,userPublicY = applyDoubleAndAddMethod(x0, y0, userPrivate, a, b, mod)
-    print(f"Private Key: {userPrivate}")
-    print(f"Numerical Key: {int(userPrivate)}")
-    print(f"pubx: {userPublicX},puby {userPublicY}")
+    ##print(f"Private Key: {userPrivate}")
+    ##print(f"Numerical Key: {int(userPrivate)}")
+    ##print(f"pubx: {userPublicX},puby {userPublicY}")
     
     botPrivate = random.randrange(1,order-1)
     
     botPublicX,botPublicY = applyDoubleAndAddMethod(x0, y0, botPrivate, a, b, mod)
-    print(f"Private Key: {botPrivate}")
-    print(f"Numerical Key: {int(botPrivate)}")
-    print(f"pubx: {botPublicX},puby {botPublicY}")
+    ##print(f"Private Key: {botPrivate}")
+    ##print(f"Numerical Key: {int(botPrivate)}")
+    ##print(f"pubx: {botPublicX},puby {botPublicY}")
     
     userSharedX, userSharedY = applyDoubleAndAddMethod(botPublicX, botPublicY, userPrivate, a, b, mod)
     print(f"pubx: {userSharedX},puby {userSharedY}")
@@ -141,8 +141,10 @@ def encrypt(msg):
 def home():
     userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY = diffieHellmanECC()
 	
-    userPrintData=f"Private Key: {userPrivate}\n Public Y: {userPublicY}\n Public X: {userPublicX}"
-    botPrintData=f"Private Key: {botPrivate}\n Public Y: {botPublicY}\n Public X: {botPublicX}"
-    return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData)
+    userPrintData=f"Private Key: {userPrivate}<br> Public X: {userPublicX}<br> Public Y: {userPublicY}"
+    botPrintData=f"Private Key: {botPrivate}<br> Public X: {botPublicX}<br> Public Y: {botPublicY}"
+    userSharedKey=f" Shared X: {userSharedX}<br> Public Y: {userSharedY}"
+    botSharedKey=f" Shared X: {botSharedX}<br> Public Y: {botSharedY}"
+    return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
 
 
