@@ -24,7 +24,6 @@
     	var socket = io.connect();
 
 	socket.on('connect', function() {
-		socket.send('User has connected!');
 	});
 
 	socket.on('message', function(msg) {
@@ -78,7 +77,7 @@
     	var socket2 = io.connect();
 
 	socket2.on('connect', function() {
-		socket2.send('User has connected!');
+
 	});
 
 	socket2.on('message', function(msg) {
