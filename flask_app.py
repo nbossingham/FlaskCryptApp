@@ -156,7 +156,7 @@ def home():
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
     return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
-
+@app.route('/',methods=['POST']
 def messageSent(msg):
     print(msg)
     userPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>Public X:</b> 0x{userPublicX:X}<br> <b>Public Y:</b> 0x{userPublicY:X}"
