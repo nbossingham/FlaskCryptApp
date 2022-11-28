@@ -141,10 +141,10 @@ def encrypt(msg):
 def home():
     userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY = diffieHellmanECC()
 	
-    userPrintData=f"Private Key: {userPrivate}<br> Public X: {userPublicX}<br> Public Y: {userPublicY}"
-    botPrintData=f"Private Key: {botPrivate}<br> Public X: {botPublicX}<br> Public Y: {botPublicY}"
-    userSharedKey=f" Shared X: {userSharedX}<br> Public Y: {userSharedY}"
-    botSharedKey=f" Shared X: {botSharedX}<br> Public Y: {botSharedY}"
+    userPrintData=f"Private Key: 0x{userPrivate:X}<br> Public X: 0x{userPublicX:X}<br> Public Y: 0x{userPublicY:X}"
+    botPrintData=f"Private Key: 0x{botPrivate:X}<br> Public X: 0x{botPublicX:X}<br> Public Y: 0x{botPublicY:X}"
+    userSharedKey=f" Shared X: 0x{userSharedX:X}<br> Public Y: 0x{userSharedY:X}"
+    botSharedKey=f" Shared X:  0x{botSharedX:X}<br> Public Y: 0x{botSharedY:X}"
     return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
 
 
