@@ -22,7 +22,10 @@
     $(document).ready(function() {
 
     	var socket = io.connect();
-
+	socket.on('messageEncryptionEvent',function(result){
+		console.log("Event Called messageEncryptionEvent")
+		#(encrypt1).append('<p>'+result+'</p>');
+	});
 	socket.on('connect', function() {
 	});
 
@@ -64,8 +67,8 @@
         </div>
         <div class="myHead1"><b>Message</b></div>
         <div class="hidden3">
-        <div class="myDiv">{{ message |safe }}</div>
-        <div class="myDiv">Data</div>
+        <div class="myDiv" id="encrypt1"></div>
+        <div class="myDiv" id="encrypt2"></div>
         </div>
     </div>
     <div class="hidden2">
