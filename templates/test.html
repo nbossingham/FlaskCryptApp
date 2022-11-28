@@ -22,10 +22,7 @@
     $(document).ready(function() {
 
     	var socket = io.connect();
-	socket.on('messageEncryptionEvent',function(result){
-		console.log("Event Called messageEncryptionEvent")
-		#(encrypt1).append('<p>'+result+'</p>');
-	});
+	
 	socket.on('connect', function() {
 	});
 
@@ -33,7 +30,10 @@
 		$("#messages").prepend('<li>'+msg+'</li>');
 		console.log('Received message');
 	});
-
+	socket.on('messageEncryptionEvent',function(result){
+		console.log("Event Called messageEncryptionEvent")
+		#(encrypt1).append('<p>'+result+'</p>');
+	});
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
 		$('#myMessage').val('');
