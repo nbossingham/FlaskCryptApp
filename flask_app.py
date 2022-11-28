@@ -143,7 +143,7 @@ def encrypt(msg):
     send(msg, broadcast=True)
     encryptedMsg = encryptMsg(msg)
     print(encryptedMsg)
-    return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey,message=encryptedMsg)
+    return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=encryptedMsg,message=encryptedMsg)
 
 @app.route('/')
 def home():
