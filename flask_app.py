@@ -129,22 +129,25 @@ def diffieHellmanECC():
     
     return userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY
 
+def encryptMsg(msg):
+	return msg
 app = Flask(__name__)
 socketio = SocketIO(app)
 app.static_folder = 'static'
 
 @socketio.on('message')
 def encrypt(msg):
-    send(msg, broadcast=True)
+    encryptedMsg = encryptMsg(msg)
+    return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
 
 @app.route('/')
 def home():
     userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY = diffieHellmanECC()
 	
-    userPrintData=f"Private Key: 0x{userPrivate:X}<br> Public X: 0x{userPublicX:X}<br> Public Y: 0x{userPublicY:X}"
-    botPrintData=f"Private Key: 0x{botPrivate:X}<br> Public X: 0x{botPublicX:X}<br> Public Y: 0x{botPublicY:X}"
-    userSharedKey=f" Shared X: 0x{userSharedX:X}<br> Public Y: 0x{userSharedY:X}"
-    botSharedKey=f" Shared X:  0x{botSharedX:X}<br> Public Y: 0x{botSharedY:X}"
+    userPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>Public X:</b> 0x{userPublicX:X}<br> <b>Public Y:</b> 0x{userPublicY:X}"
+    botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
+    userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
+    botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
     return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
 
 
