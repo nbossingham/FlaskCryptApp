@@ -70,7 +70,35 @@
         </div>
     </div>
     <div class="hidden2">
-        <img src="{{ url_for('static', filename='images/IPhone_X_vector.svg') }}">
+         <nav>
+      
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+    	var socket2 = io.connect();
+
+	socket2.on('connect', function() {
+		socket2.send('User has connected!');
+	});
+
+	socket2.on('message', function(msg) {
+		$("#messages2").prepend('<li>'+msg+'</li>');
+		console.log('Received message');
+	});
+
+	$('#sendbutton2').on('click', function() {
+		socket.send($('#myMessage2').val());
+		$('#myMessage2').val('');
+	});
+
+});
+</script>
+<ul id="messages2"></ul>
+<div class="hidden3">	      
+<input type="text" id="myMessage2" class="textEntry">
+<button class="button" id="sendbutton2">Send</button>
+	      </div>
+      </nav>
 
 
     </div>
