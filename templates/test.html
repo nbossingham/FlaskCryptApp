@@ -26,14 +26,12 @@
 	socket.on('connect', function() {
 	});
 
-	socket.on('message', function(msg) {
+	socket.on('message', function(msg,result) {
 		$("#messages").prepend('<li>'+msg+'</li>');
+		#(encrypt1).append('<p>'+result+'</p>');
 		console.log('Received message');
 	});
-	socket.on('messageEncryptionEvent',function(result){
-		console.log("Event Called messageEncryptionEvent")
-		#(encrypt1).append('<p>'+result+'</p>');
-	});
+	
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
 		$('#myMessage').val('');
