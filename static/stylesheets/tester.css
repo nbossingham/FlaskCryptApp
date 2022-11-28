@@ -1,30 +1,4 @@
-a:link, a:visited {
-    font-family: Calibri;
-    background-color: #efefef;
-    color: #434343;
-    border: 2px solid white;
-    padding: 5px 0px 5px 0px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-  }
-  a:hover, a:active {
-    background-color: #d9d9d9;
-  }
-            .button {
-          background-color: #6fa8dc;
-          border: none;
-          color: white;
-          font-family: Calibri;
-          padding: 2px 2px;
-          transition-duration: 0.4s;
-          cursor:pointer;
-        }
-        .button:hover {
-    background-color:#9fc5e8;
-    color: white;
-    cursor:pointer;
-  }
+
   .textEntry{
     border: 1px solid black;
     font-family: Calibri;
@@ -125,10 +99,11 @@ a:link, a:visited {
     padding: 2px;
   }
   .hidden2{
+    align-items: end;
     text-align: center;
-    display: block;
-    margin: auto;
-    gap:2px;
+    display: flex;
+    margin: 0px 0px 0px 0px;
+    gap: 2px;
     padding: 2px;
   }
   .hidden3{
@@ -145,88 +120,7 @@ a:link, a:visited {
     gap:2px;
     padding: 2px;
   }
-  /* Style the button that is used to open and close the collapsible content */
-  .collapsible {
-    background-color: #93c47d;
-    color: white;
-    cursor: pointer;
-    padding: 2px;
-    width: 100%;
-    border: solid white;
-    border-width: 0px 2px 2px 2px;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-  }
-  button.collapsible:after {
-      content: '\002B';
-      color: white;
-      font-weight: bold;
-      float: right;
-      margin-left: 5px;
-  }
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible:hover {
-    background-color: #b7f09e;
-  }
-  /* Style the button that is used to open and close the collapsible content */
-  .collapsible1 {
-    background-color: #ffd966;
-    color: white;
-    cursor: pointer;
-    padding: 2px;
-    width: 100%;
-    border: solid white;
-    border-width: 0px 2px 2px 2px;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-  }
-  button.collapsible1:after {
-      content: '\002B';
-      color: white;
-      font-weight: bold;
-      float: right;
-      margin-left: 5px;
-  }
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible1:hover {
-    background-color: #b7f09e;
-  }
-  /* Style the button that is used to open and close the collapsible content */
-  .collapsible2 {
-    background-color: #c27ba0;
-    color: white;
-    cursor: pointer;
-    padding: 2px;
-    width: 100%;
-    border: solid white;
-    border-width: 0px 2px 2px 2px;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-  }
-  button.collapsible2:after {
-      content: '\002B';
-      color: white;
-      font-weight: bold;
-      float: right;
-      margin-left: 5px;
-  }
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible2:hover {
-    background-color: #ead1dc;
-  }
-  /* Style the collapsible content. Note: hidden by default */
-  .content {
-    display: none;
-    overflow: hidden;
-    font-family: Calibri;
-    border: 2px solid white;
-    background-color: #efefef;
-    text-align: center;
-    padding: 2px 2px;
-  }
+
 ul{
   overflow: auto;
   display: flex;
