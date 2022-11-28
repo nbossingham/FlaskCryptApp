@@ -96,10 +96,10 @@
     padding: 2px;
   }
   .hidden2{
-    justify-content: flex-end;
+    justify-content: start;
     flex: 1;
     align-items: end;
-    text-align: center;
+    text-align: left;
     display: flex;
     margin: 0px 0px 0px 0px;
     gap: 2px;
@@ -121,6 +121,7 @@
   }
 
 ul{
+  align-content: start;
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
@@ -131,7 +132,6 @@ ul{
 ul li {
     text-align: right;
     padding: 2px 8px 2px 5px;
-    
     color: white;
     list-style: none;
     background-color: #2294fb;
@@ -141,12 +141,23 @@ ul li {
     border-width: 1px;
     overflow: visible;
 }
+.receive{
+  text-align: left;
+    padding: 2px 8px 2px 8px;
+    color: black;
+    list-style: none;
+    background-color: #ceced0;
+    border-radius: 18px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    overflow: visible;
+}
 nav ul{
   scroll-snap-align: end;
   height: 625px;
   }
 nav ul{
-  
   scroll-snap-align: end;
   overflow:hidden;
   overflow-y:scroll;
