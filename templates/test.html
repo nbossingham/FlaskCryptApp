@@ -82,7 +82,7 @@
 	});
 
 	socket2.on('message', function(msg) {
-		$("#messages2").prepend('<li>'+msg+'</li>');
+		$("#messages2").prepend('<li class="receive">'+msg+'</li>');
 		console.log('Received message');
 	});
 
