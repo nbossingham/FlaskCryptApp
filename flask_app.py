@@ -170,4 +170,5 @@ def encrypt(msg):
     send(msg, broadcast=True)
     encryptedMsg = encryptMsg(msg)
     print(encryptedMsg)
+    messageSent(encryptedMsg)
     
