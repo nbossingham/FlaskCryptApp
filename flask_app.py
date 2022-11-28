@@ -130,6 +130,9 @@ def diffieHellmanECC():
     return userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY
 
 def encryptMsg(msg):
+	
+	msg=f"Encrypted: {msg}"
+	
 	return msg
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -139,7 +142,7 @@ app.static_folder = 'static'
 def encrypt(msg):
     send(msg, broadcast=True)
     encryptedMsg = encryptMsg(msg)
-    return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
+    return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey,message=encryptedMsg)
 
 @app.route('/')
 def home():
