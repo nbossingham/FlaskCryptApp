@@ -1,19 +1,16 @@
 
-  .textEntry{
-    border: 1px solid black;
-    font-family: Calibri;
-          padding: 1px 1px;
-  }
-       .textEntry2{
+   .textEntry{
     border: none;
-    font-family: Calibri;
-          padding: 1px 1px;
-          background-color:#efefef;
-          cursor:default;
-          color: black;
-          text-align: center;
-
+    font-family: Helvetica;
+    padding: 1px 1px;
+    background-color:white;
+    border: 2px solid gray;
+    cursor: text;
+    color: black;
+    text-align: center;
+    border-radius: 18px;
   }
+       
   H1{
       padding: 2px;
       margin: 2px;
@@ -99,6 +96,7 @@
     padding: 2px;
   }
   .hidden2{
+    flex: 1;
     align-items: end;
     text-align: center;
     display: flex;
@@ -122,29 +120,29 @@
   }
 
 ul{
-  overflow: auto;
+  flex: 1;
   display: flex;
   flex-direction: column-reverse;
   font-family: Helvetica;
   font-size: small;
-    list-style: none;
+  list-style: none;
 }
 ul li {
     text-align: right;
-    padding: 1px 5px 1px 5px;
+    padding: 2px 8px 2px 5px;
+    
     color: white;
     list-style: none;
     background-color: #2294fb;
-    border-radius: 5px;
+    border-radius: 18px;
     border-style: solid;
     border-color: #white;
     border-width: 1px;
     overflow: visible;
 }
 nav ul{
-  
   scroll-snap-align: end;
-  height:400px;
+  height: 625px;
   }
 nav ul{
   
@@ -174,4 +172,14 @@ nav ul{
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
   border-radius: 6px;
+}
+.button {
+  
+  border-radius: 18px;
+  background-color: #1c89ff;
+  border: solid 1px white;
+  color: #fff;
+  font-size: medium;
+  cursor: pointer;
+  
 }
