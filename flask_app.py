@@ -137,7 +137,7 @@ app.static_folder = 'static'
 
 @socketio.on('message')
 def encrypt(msg):
-    send(msg, broadcast=False)
+    send(msg, broadcast=True)
     encryptedMsg = encryptMsg(msg)
     return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
 
