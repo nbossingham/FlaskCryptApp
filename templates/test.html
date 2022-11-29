@@ -30,7 +30,7 @@
 		$("#messages").prepend('<li>'+msg+'</li>');
 		console.log('Received message');
 	});
-	socket.on('messageEncryptionEvent', ({msg,encrMsg}) => {
+	socket.on('messageEncryptionEvent', function(msg,encrMsg) {
 		$('#encrypt1').append('<p>'+msg+'</p>');
 		$('#encrypt2').append('<p>'+encrMsg+'</p>');
 	});
