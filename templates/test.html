@@ -31,8 +31,10 @@
 		console.log('Received message');
 	});
 	socket.on('messageEncryptionEvent', function(data) {
-		$('#encrypt1').append('<p>'+data[0]+'</p>');
-		$('#encrypt2').append('<p>'+data[1]+'</p>');
+		$('#encrypt1').val(data[0]);
+		$('#encrypt2').val(data[1]);
+		$('#encrypt3').val(data[2]);
+		$('#encrypt4').val(data[3]);
 	});
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
@@ -62,13 +64,13 @@
         </div>
         <div class="myHead2"><b>Encryption</b></div>
         <div class="hidden3">
-        <div class="myDiv">Data</div>
-        <div class="myDiv">Data</div>
+        <div class="myDiv"><p id="encrypt1"></p></div>
+		<div class="myDiv"><p id="encrypt2"></p></div>
         </div>
         <div class="myHead1"><b>Message</b></div>
         <div class="hidden3">
-        <div class="myDiv" id="encrypt1"></div>
-        <div class="myDiv" id="encrypt2"></div>
+        <div class="myDiv"><p id="encrypt3"></p></div>
+        <div class="myDiv"><p id="encrypt4"></p></div>
         </div>
     </div>
     <div class="hidden2">
