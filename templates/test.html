@@ -31,10 +31,10 @@
 		console.log('Received message');
 	});
 	socket.on('messageEncryptionEvent', function(data) {
-		$('#encrypt1').val(data[0]);
-		$('#encrypt2').val(data[1]);
-		$('#encrypt3').val(data[2]);
-		$('#encrypt4').val(data[3]);
+		$('#encrypt1').text(data[0]);
+		$('#encrypt2').text(data[1]);
+		$('#encrypt3').text(data[2]);
+		$('#encrypt4').text(data[3]);
 	});
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
