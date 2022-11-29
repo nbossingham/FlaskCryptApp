@@ -162,7 +162,7 @@ def messageSent(msg):
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
     currentMsg = encryptMsg(msg)
-    socketio.emit('messageEncryptionEvent',{msg: msg, encrMsg: currentMsg},broadcast=True)
+    socketio.emit('messageEncryptionEvent',{'msg': msg, 'encrMsg': currentMsg},broadcast=True)
 
 @socketio.on('message')
 def encrypt(msg):
