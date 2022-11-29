@@ -30,9 +30,9 @@
 		$("#messages").prepend('<li>'+msg+'</li>');
 		console.log('Received message');
 	});
-	socket.on('messageEncryptionEvent', function(msg,encrMsg) {
-		$('#encrypt1').append('<p>'+msg+'</p>');
-		$('#encrypt2').append('<p>'+encrMsg+'</p>');
+	socket.on('messageEncryptionEvent', function(data) {
+		$('#encrypt1').append('<p>'+data[0]+'</p>');
+		$('#encrypt2').append('<p>'+data[1]+'</p>');
 	});
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
