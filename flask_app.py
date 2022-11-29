@@ -156,13 +156,14 @@ def home():
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
     return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
-@socketio.on('messageEncryptionEvent')
-def messageSent():
+
+def messageSent(msg):
     userPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>Public X:</b> 0x{userPublicX:X}<br> <b>Public Y:</b> 0x{userPublicY:X}"
     botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
-    socketio.emit('messageEncryptionEvent',currentMsg,broadcast=True)
+    currentMsg = encryptMsg(msg)
+    socketio.emit('messageEncryptionEvent',{msg: msg, encrMsg: currentMsg},broadcast=True)
 
 @socketio.on('message')
 def encrypt(msg,result):
