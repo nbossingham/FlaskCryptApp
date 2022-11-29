@@ -168,7 +168,6 @@ def messageSent(msg):
 def encrypt(msg):
     send(msg, broadcast=True)
     currentMsg = encryptMsg(msg)
-    send(result=currentMsg, broadcast=True)
     print(currentMsg)
     messageSent(currentMsg)
     
