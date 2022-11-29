@@ -144,7 +144,6 @@ def encryptMsg(msg):
 app = Flask(__name__)
 socketio = SocketIO(app)
 app.static_folder = 'static'
-userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY = diffieHellmanECC()
 
 
     
