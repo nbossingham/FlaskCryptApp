@@ -33,8 +33,8 @@
 	socket.on('messageEncryptionEvent', function(data) {
 		$('#encrypt1').text(data[0]);
 		$('#encrypt2').text(data[1]);
-		$('#encrypt3').text(data[2]);
-		$('#encrypt4').text(data[3]);
+		$('#encrypt3').html(data[2]);
+		$('#encrypt4').html(data[3]);
 	});
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
