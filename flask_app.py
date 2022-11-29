@@ -165,7 +165,7 @@ def messageSent(msg):
     socketio.emit('messageEncryptionEvent',{msg: msg, encrMsg: currentMsg},broadcast=True)
 
 @socketio.on('message')
-def encrypt(msg,result):
+def encrypt(msg):
     send(msg, broadcast=True)
     currentMsg = encryptMsg(msg)
     send(result=currentMsg, broadcast=True)
