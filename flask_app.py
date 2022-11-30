@@ -216,7 +216,7 @@ def messageSent(msg):
     user = AESCipher(key="0x{userSharedX:X}")
     bot = AESCipher(key="0x{botSharedX:X}")
     encrMsg,userIV,paddedText= user.encrypt(msg)
-    decrMsg = bot.decrypt(encrMsg)
+    decrMsg = user.decrypt(encrMsg)
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,userSharedKey,botSharedKey],broadcast=True)
 
 @socketio.on('message')
