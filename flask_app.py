@@ -176,12 +176,13 @@ userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{user
 botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
 currentMsg=""
 def aesEncrypt(msg,sharedKey): #Going to use AES with CBC
-	print(f"Mesage:{msg}")
-	aes = AESCipher(key="0x{userSharedX:X}")
-	print("Initialized")
-	encrMsg = aes.encrypt(msg)
-	print(f"Encr Mesage:{encrMsg}")
-	return encrMsg
+  print(f"Mesage:{msg}")
+  aes = AESCipher(key="0x{userSharedX:X}")
+  print("Initialized")
+  encrMsg = aes.encrypt(msg)
+  print(f"Encr Mesage:{encrMsg}")
+  decrMsg = aes.decrypt(encrMsg)
+  return encrMsg,decrMsg
 	
 	
 def aesDecrypt(encrMsg,SharedKey):
