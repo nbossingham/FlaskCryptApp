@@ -214,7 +214,6 @@ def messageSent(msg):
 @socketio.on('message')
 def encrypt(msg):
     send(msg, broadcast=True)
-    currentMsg = encryptMsg(msg)
-    print(currentMsg)
-    messageSent(currentMsg)
+    print(msg)
+    messageSent(msg)
     
