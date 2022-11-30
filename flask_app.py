@@ -201,22 +201,22 @@ app.static_folder = 'static'
 @app.route('/')
 def home():
 	
-    userPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>Public X:</b> 0x{userPublicX:X}<br> <b>Public Y:</b> 0x{userPublicY:X}"
-    botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
-    userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
-    botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
+    userPrintData=f"<b>Private Key:</b><textarea readonly="True" cols="50"> 0x{userPrivate:X}</textarea><br> <b>Public X:</b><textarea readonly="True" cols="50"> 0x{userPublicX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{userPublicY:X}</textarea>"
+    botPrintData=f"<b>Private Key:</b><textarea readonly="True" cols="50"> 0x{botPrivate:X}</textarea><br> <b>Public X:</b><textarea readonly="True" cols="50"> 0x{botPublicX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{botPublicY:X}</textarea>"
+    userSharedKey=f" <b>Shared X:</b><textarea readonly="True" cols="50"> 0x{userSharedX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{userSharedY:X}</textarea>"
+    botSharedKey=f" <b>Shared X:</b><textarea readonly="True" cols="50">  0x{botSharedX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{botSharedY:X}</textarea>"
     return render_template('test.html',dhDataUser=userPrintData,dhDataBot=botPrintData,shrDataUser=userSharedKey,shrDataBot=botSharedKey)
 
 def messageSent(msg):
-    userPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>Public X:</b> 0x{userPublicX:X}<br> <b>Public Y:</b> 0x{userPublicY:X}"
-    botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
-    userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
-    botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
+    userPrintData=f"<b>Private Key:</b><textarea readonly="True" cols="50"> 0x{userPrivate:X}</textarea><br> <b>Public X:</b><textarea readonly="True" cols="50"> 0x{userPublicX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{userPublicY:X}</textarea>"
+    botPrintData=f"<b>Private Key:</b><textarea readonly="True" cols="50"> 0x{botPrivate:X}</textarea><br> <b>Public X:</b><textarea readonly="True" cols="50"> 0x{botPublicX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{botPublicY:X}</textarea>"
+    userSharedKey=f" <b>Shared X:</b><textarea readonly="True" cols="50"> 0x{userSharedX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{userSharedY:X}</textarea>"
+    botSharedKey=f" <b>Shared X:</b><textarea readonly="True" cols="50">  0x{botSharedX:X}</textarea><br> <b>Public Y:</b><textarea readonly="True" cols="50"> 0x{botSharedY:X}</textarea>"
     aes = AESCipher(key="0x{userSharedX:X}")
     encrMsg,userIV,paddedText= aes.encrypt(msg)
     decrMsg,botIV,paddedUnenc = aes.decrypt(encrMsg)
-    encrPrintData=f"<b>Private Key:</b> {userPrivate}<br> <b>IV:</b> {userIV}<br> <b>Padded Text:</b> {paddedText}<br> <b>Cipher Text:</b> {encrMsg}"
-    decrPrintData=f"<b>Private Key:</b> {botPrivate}<br> <b>IV:</b> {botIV}<br> <b>Padded Text:</b> {paddedUnenc}<br> <b>Decrypted Text:</b> {decrMsg}"
+    encrPrintData=f"<b>Private Key:</b> <textarea readonly="True" cols="50">{userPrivate}<br></textarea> <b>IV:</b> <textarea readonly="True" cols="50">{userIV}</textarea><br> <b>Padded Text:</b> <textarea readonly="True" cols="50">{paddedText}</textarea><br> <b>Cipher Text:</b> <textarea readonly="True" cols="50">{encrMsg}</textarea>"
+    decrPrintData=f"<b>Private Key:</b> <textarea readonly="True" cols="50">{botPrivate}<br></textarea> <b>IV:</b> <textarea readonly="True" cols="50">{botIV}</textarea><br> <b>Padded Text:</b> <textarea readonly="True" cols="50">{paddedUnenc}</textarea><br> <b>Decrypted Text:</b> <textarea readonly="True" cols="50">{decrMsg}</textarea>"
 
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,encrPrintData,decrPrintData,userPrintData,botPrintData,userSharedKey,botSharedKey],broadcast=True)
 
@@ -225,4 +225,3 @@ def encrypt(msg):
     send(msg, broadcast=True)
     print(msg)
     messageSent(msg)
-    
