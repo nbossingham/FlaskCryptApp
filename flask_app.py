@@ -213,8 +213,7 @@ def messageSent(msg):
     botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
-    encrMsg = aesEncrypt(msg,userSharedX)
-    decrMsg = aesDecrypt(encrMsg,userSharedX)
+    encrMsg,decrMsg = aesEncrypt(msg,userSharedX)
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,userSharedKey,botSharedKey],broadcast=True)
 
 @socketio.on('message')
