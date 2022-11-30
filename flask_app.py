@@ -177,14 +177,14 @@ currentMsg=""
 def aesEncrypt(msg,sharedKey): #Going to use AES with CBC
 	aes = AESCipher.new(sharedKey)
 	encrMsg = aes.encrypt(msg)
-	print(encrMsg)
+	print(f"Encr Mesage:{encrMsg}")
 	return encrMsg
 	
 	
 def aesDecrypt(encrMsg,SharedKey):
 	aes = AESCipher.new(sharedKey)
 	decrMsg = aes.decrypt(msg)
-	print(decrMsg)
+	print(f"Mesage:{decrMsg}")
 	return decrMsg
 
 
