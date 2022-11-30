@@ -37,7 +37,7 @@ class AESCipher(object):
         iv = bytes.fromhex("A30D2848066868576B62A8E7DF2EBF48")
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         plain_text = cipher.decrypt(encrypted_text[self.block_size:]).decode("utf-8")
-        return self.__unpad(plain_text)
+        return self.__unpad(plain_text),iv,plain_text
 
     def __pad(self, plain_text):
         number_of_bytes_to_pad = self.block_size - len(plain_text) % self.block_size
@@ -214,7 +214,10 @@ def messageSent(msg):
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
     aes = AESCipher(key="0x{userSharedX:X}")
     encrMsg,userIV,paddedText= aes.encrypt(msg)
-    decrMsg = aes.decrypt(encrMsg)
+    decrMsg,botIV,paddedUnenc = aes.decrypt(encrMsg)
+    encrPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>IV:</b> 0x{userIV:X}<br> <b>Padded Text:</b> {paddedText}<br> <b>Cipher Text:</b> {encrMsg}"
+    botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>IV:</b> 0x{botIV:X}<br> <b>Padded Text:</b> {paddedUnenc}<br> <b>Cipher Text:</b> {decrMsg}"
+
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,userSharedKey,botSharedKey],broadcast=True)
 
 @socketio.on('message')
