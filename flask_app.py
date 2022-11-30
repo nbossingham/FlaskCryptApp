@@ -213,6 +213,7 @@ def messageSent(msg):
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
     assert UserSharedX!=botSharedX, "Keys are not Equal,Can not Continue"
+    print("Keys are equal")
     aes = AESCipher(key="0x{userSharedX:X}")
     encrMsg,userIV,paddedText= aes.encrypt(msg)
     decrMsg = aes.decrypt(encrMsg)
