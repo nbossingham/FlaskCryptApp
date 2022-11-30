@@ -10,7 +10,10 @@
     text-align: center;
     border-radius: 18px;
   }
-       
+  p{
+     padding: 2px;
+      margin: 2px;
+}
   H1{
       padding: 2px;
       margin: 2px;
