@@ -44,6 +44,10 @@
 		$('#encrypt2').text(data[1]);
 		$('#encrypt3').html(data[2]);
 		$('#encrypt4').html(data[3]);
+		$('#userData').html(data[4]);
+		$('#botData').html(data[5]);
+		$('#userShared').html(data[6]);
+		$('#botShared').html(data[7]);
 	});
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
@@ -63,13 +67,13 @@
     <div class="hidden">
         <div class="myHead4"><b>EC Diffie-Hellman</b></div>
         <div class="hidden3">
-        <div class="myDiv">{{ dhDataUser|safe }}</div>
-        <div class="myDiv">{{ dhDataBot |safe }}</div>
+        <div class="myDiv" id="userData">{{ dhDataUser|safe }}</div>
+        <div class="myDiv" id="botData">{{ dhDataBot |safe }}</div>
         </div>
         <div class="myHead3"><b>Shared Keys</b></div>
         <div class="hidden3">
-        <div class="myDiv">{{ shrDataUser |safe }}</div>
-        <div class="myDiv">{{ shrDataBot |safe }}</div>
+        <div class="myDiv" id="userShared">{{ shrDataUser |safe }}</div>
+        <div class="myDiv" id="botShared">{{ shrDataBot |safe }}</div>
         </div>
         <div class="myHead2"><b>Encryption using AES</b></div>
         <div class="hidden3">
