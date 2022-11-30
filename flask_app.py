@@ -138,7 +138,7 @@ def applyDoubleAndAddMethod(x0, y0, k, a, b, mod):
 
 ## END QUOTED CODE
 
-## ECDH with 128 bit keys
+## ECDH with 256 bit keys
 
 def diffieHellmanECC():
     #os.urandom(16).hex()
