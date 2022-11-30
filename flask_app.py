@@ -176,12 +176,16 @@ botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSh
 currentMsg=""
 def aesEncrypt(msg,sharedKey): #Going to use AES with CBC
 	aes = AESCipher(sharedKey)
-	return aes.encrypt(msg)
+	encrMsg = aes.encrypt(msg)
+	print(encrMsg)
+	return encrMsg
 	
 	
 def aesDecrypt(encrMsg,SharedKey):
 	aes = AESCipher(sharedKey)
-	return aes.decrypt(msg)
+	decrMsg = aes.decrypt(msg)
+	print(decrMsg)
+	return decrMsg
 
 
 app = Flask(__name__)
