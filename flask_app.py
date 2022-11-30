@@ -51,7 +51,7 @@ class AESCipher(object):
         last_character = plain_text[len(plain_text) - 1:]
         return plain_text[:-ord(last_character)]
     def changeKey(key):
-	self.key = hashlib.sha256(key.encode()).digest()
+        self.key = hashlib.sha256(key.encode()).digest()
 ##START QUOTED CODE
 ##This code is the very baseline of ECC. These methods are all required 
 ##to enact ECC. This code was borrowed from serengil 
