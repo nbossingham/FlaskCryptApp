@@ -218,7 +218,7 @@ def messageSent(msg):
     encrPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>IV:</b> 0x{userIV:X}<br> <b>Padded Text:</b> {paddedText}<br> <b>Cipher Text:</b> {encrMsg}"
     botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>IV:</b> 0x{botIV:X}<br> <b>Padded Text:</b> {paddedUnenc}<br> <b>Cipher Text:</b> {decrMsg}"
 
-    socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,userSharedKey,botSharedKey],broadcast=True)
+    socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,encrPrintData,botPrintData],broadcast=True)
 
 @socketio.on('message')
 def encrypt(msg):
