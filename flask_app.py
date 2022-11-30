@@ -31,7 +31,7 @@ class AESCipher(object):
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         encrypted_text = cipher.encrypt(plain_text.encode())
         return b64encode(iv + encrypted_text).decode("utf-8"),iv,plain_text
-
+    
     def decrypt(self, encrypted_text):
         encrypted_text = b64decode(encrypted_text)
         iv = bytes.fromhex("A30D2848066868576B62A8E7DF2EBF48")
@@ -50,7 +50,8 @@ class AESCipher(object):
     def __unpad(plain_text):
         last_character = plain_text[len(plain_text) - 1:]
         return plain_text[:-ord(last_character)]
-	
+    def changeKey(key):
+		self.key = hashlib.sha256(key.encode()).digest()
 ##START QUOTED CODE
 ##This code is the very baseline of ECC. These methods are all required 
 ##to enact ECC. This code was borrowed from serengil 
@@ -213,10 +214,10 @@ def messageSent(msg):
     botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
-    user = AESCipher(key="0x{userSharedX:X}")
-    bot = AESCipher(key="0x{botSharedX:X}")
-    encrMsg,userIV,paddedText= user.encrypt(msg)
-    decrMsg = user.decrypt(encrMsg)
+    aes = AESCipher(key="0x{userSharedX:X}")
+    encrMsg,userIV,paddedText= aes.encrypt(msg)
+    aes.changeKey("0x{botSharedX:X}")
+    decrMsg = aes.decrypt(encrMsg)
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,userSharedKey,botSharedKey],broadcast=True)
 
 @socketio.on('message')
