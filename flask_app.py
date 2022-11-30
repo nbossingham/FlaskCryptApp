@@ -1,6 +1,10 @@
 from flask import Flask, request, render_template, make_response
 from flask_socketio import SocketIO, send
+from Crypto import Random
+from Crypto.Cipher import AES
+from base64 import b64encode, b64decode
 import random
+import hashlib
 ## CURVE: 
 ##     y^2 = x^3 +2x + 2 mod 17
 ## BASE POINT:
@@ -15,6 +19,34 @@ order = 115792089210356248762697446949407573529996955224135760342422259061068512
 x0 = 48439561293906451759052585252797914202762949526041747995844080717082404635286
 y0 = 36134250956749795798585127919587881956611106672985015071877198253568414405109
 
+class AESCipher(object):
+	def __init__(self,key):
+		self.block_size = AES.block_size
+		self.key = hashlib.sha256(key.encode()).digest()
+	def __pad(self, plain_text):
+        number_of_bytes_to_pad = self.block_size - len(plain_text) % self.block_size
+        ascii_string = chr(number_of_bytes_to_pad)
+        padding_str = number_of_bytes_to_pad * ascii_string
+        padded_plain_text = plain_text + padding_str
+        return padded_plain_text
+	@staticmethod
+    def __unpad(plain_text):
+        last_character = plain_text[len(plain_text) - 1:]
+        bytes_to_remove = ord(last_character)
+        return plain_text[:-bytes_to_remove]
+	def encrypt(self, plain_text):
+        plain_text = self.__pad(plain_text)
+        iv = Random.new().read(self.block_size)
+        cipher = AES.new(self.key, AES.MODE_CBC, iv)
+        encrypted_text = cipher.encrypt(plain_text.encode())
+        return b64encode(iv + encrypted_text).decode("utf-8")
+	def decrypt(self, encrypted_text):
+        encrypted_text = b64decode(encrypted_text)
+        iv = encrypted_text[:self.block_size]
+        cipher = AES.new(self.key, AES.MODE_CBC, iv)
+        plain_text = cipher.decrypt(encrypted_text[self.block_size:]).decode("utf-8")
+        return self.__unpad(plain_text)
+	
 ##START QUOTED CODE
 ##This code is the very baseline of ECC. These methods are all required 
 ##to enact ECC. This code was borrowed from serengil 
@@ -107,14 +139,14 @@ def applyDoubleAndAddMethod(x0, y0, k, a, b, mod):
 
 def diffieHellmanECC():
     #os.urandom(16).hex()
-    userPrivate = random.randrange(1,order-1)
+    userPrivate = random.randrange(pow(2,255),order-1)
     
     userPublicX,userPublicY = applyDoubleAndAddMethod(x0, y0, userPrivate, a, b, mod)
     ##print(f"Private Key: {userPrivate}")
     ##print(f"Numerical Key: {int(userPrivate)}")
     ##print(f"pubx: {userPublicX},puby {userPublicY}")
     
-    botPrivate = random.randrange(1,order-1)
+    botPrivate = random.randrange(pow(2,255),order-1)
     
     botPublicX,botPublicY = applyDoubleAndAddMethod(x0, y0, botPrivate, a, b, mod)
     ##print(f"Private Key: {botPrivate}")
@@ -129,6 +161,9 @@ def diffieHellmanECC():
     
     return userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY
 
+
+	
+
 userPrivate,userPublicX,userPublicY,userSharedX,userSharedY,botPrivate,botPublicX,botPublicY,botSharedX,botSharedY = diffieHellmanECC()
 	
 userPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>Public X:</b> 0x{userPublicX:X}<br> <b>Public Y:</b> 0x{userPublicY:X}"
@@ -136,11 +171,16 @@ botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botP
 userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
 botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
 currentMsg=""
-def encryptMsg(msg):
+def aesEncrypt(msg,sharedKey): #Going to use AES with CBC
+	aes = AESCipher(sharedKey)
+	return aes.encrypt(msg)
 	
-	msg=f"Encrypted: {msg}"
 	
-	return msg
+def aesDecrypt(encrMsg,SharedKey):
+	aes = AESCipher(sharedKey)
+	return aes.decrypt(msg)
+
+
 app = Flask(__name__)
 socketio = SocketIO(app)
 app.static_folder = 'static'
@@ -161,7 +201,7 @@ def messageSent(msg):
     botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
-    currentMsg = encryptMsg(msg)
+    currentMsg = aesEncrypt(msg,userSharedX)
     socketio.emit('messageEncryptionEvent',[msg,currentMsg,userSharedKey,botSharedKey],broadcast=True)
 
 @socketio.on('message')
