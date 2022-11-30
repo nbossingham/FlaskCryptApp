@@ -216,7 +216,7 @@ def messageSent(msg):
     encrMsg,userIV,paddedText= aes.encrypt(msg)
     decrMsg,botIV,paddedUnenc = aes.decrypt(encrMsg)
     encrPrintData=f"<b>Private Key:</b> {userPrivate}<br> <b>IV:</b> {userIV}<br> <b>Padded Text:</b> {paddedText}<br> <b>Cipher Text:</b> {encrMsg}"
-    botPrintData=f"<b>Private Key:</b> {botPrivate}<br> <b>IV:</b> {botIV}<br> <b>Padded Text:</b> {paddedUnenc}<br> <b>Cipher Text:</b> {decrMsg}"
+    botPrintData=f"<b>Private Key:</b> {botPrivate}<br> <b>IV:</b> {botIV}<br> <b>Padded Text:</b> {paddedUnenc}<br> <b>Decrypted Text:</b> {decrMsg}"
 
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,encrPrintData,botPrintData,userPrintData,botPrintData,userSharedKey,botSharedKey],broadcast=True)
 
