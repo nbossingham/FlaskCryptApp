@@ -215,8 +215,8 @@ def messageSent(msg):
     aes = AESCipher(key="0x{userSharedX:X}")
     encrMsg,userIV,paddedText= aes.encrypt(msg)
     decrMsg,botIV,paddedUnenc = aes.decrypt(encrMsg)
-    encrPrintData=f"<b>Private Key:</b> 0x{userPrivate:X}<br> <b>IV:</b> 0x{userIV:X}<br> <b>Padded Text:</b> {paddedText}<br> <b>Cipher Text:</b> {encrMsg}"
-    botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>IV:</b> 0x{botIV:X}<br> <b>Padded Text:</b> {paddedUnenc}<br> <b>Cipher Text:</b> {decrMsg}"
+    encrPrintData=f"<b>Private Key:</b> {userPrivate}<br> <b>IV:</b> {userIV}<br> <b>Padded Text:</b> {paddedText}<br> <b>Cipher Text:</b> {encrMsg}"
+    botPrintData=f"<b>Private Key:</b> {botPrivate}<br> <b>IV:</b> {botIV}<br> <b>Padded Text:</b> {paddedUnenc}<br> <b>Cipher Text:</b> {decrMsg}"
 
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,encrPrintData,botPrintData],broadcast=True)
 
