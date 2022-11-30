@@ -2,7 +2,7 @@
    .textEntry{
     border: none;
     font-family: Helvetica;
-    padding: 1px 1px;
+    padding: 2px 8px 2px 8px;
     background-color:white;
     border: 2px solid gray;
     cursor: text;
@@ -13,7 +13,7 @@
   textarea{
      border: none;
     font-family: Helvetica;
-    padding: 1px 1px;
+    padding: 2px 8px 2px 8px;
     background-color: #efefef;
     border: none;
     cursor: text;
