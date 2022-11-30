@@ -9,6 +9,7 @@ How Everything Works:
   The url for this flask app is currently nbossinghamw.onrender.com
   
   Some Considerations:
+   
    The code uses the X coordinate of the shared key as the AES 256-bit key.
    
    There is a static IV in the code. This is for simplicity, but in application, the IV would not be static.
