@@ -26,8 +26,8 @@ class AESCipher(object):
         self.key = hashlib.sha256(key.encode()).digest()
 
     def encrypt(self, plain_text):
-	print("Encrypting")
         plain_text = self.__pad(plain_text)
+	print("Encrypting")
         iv = Random.new().read(self.block_size)
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         encrypted_text = cipher.encrypt(plain_text.encode())
