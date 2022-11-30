@@ -27,14 +27,14 @@ class AESCipher(object):
 
     def encrypt(self, plain_text):
         plain_text = self.__pad(plain_text)
-        iv = Random.new().read(self.block_size)
+        iv = bytes.fromhex("A30D2848066868576B62A8E7DF2EBF4814B8B035EEA56CE80EEEF498FEA57B6E")
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         encrypted_text = cipher.encrypt(plain_text.encode())
         return b64encode(iv + encrypted_text).decode("utf-8")
 
     def decrypt(self, encrypted_text):
         encrypted_text = b64decode(encrypted_text)
-        iv = encrypted_text[:self.block_size]
+        iv = bytes.fromhex("A30D2848066868576B62A8E7DF2EBF4814B8B035EEA56CE80EEEF498FEA57B6E")
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         plain_text = cipher.decrypt(encrypted_text[self.block_size:]).decode("utf-8")
         return self.__unpad(plain_text)
