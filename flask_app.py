@@ -21,9 +21,9 @@ y0 = 361342509567497957985851279195878819566111066729850150718771982535684144051
 
 class AESCipher(object):
     def __init__(self, key):
-	print("Initialized")
         self.block_size = AES.block_size
         self.key = hashlib.sha256(key.encode()).digest()
+	print("Initialized")
 
     def encrypt(self, plain_text):
         plain_text = self.__pad(plain_text)
