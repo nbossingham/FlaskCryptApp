@@ -216,10 +216,10 @@ def messageSent(msg):
     decrMsg,botIV,paddedUnenc = aes.decrypt(encrMsg)
     encrMsgForm=f"<b>Encrypted Data:</b> <textarea readonly=\"True\" cols=\"50\">{encrMsg}</textarea>"
     decrMsgForm=f"<b>Decrypted Data:</b> <textarea readonly=\"True\" cols=\"50\">{decrMsg}</textarea>"
-    encrPrintData=f"<b>Private Key:</b> <textarea readonly=\"True\" cols=\"50\">{userPrivate}</textarea><br> <b>IV:</b> <textarea readonly=\"True\" cols=\"50\">{userIV}</textarea><br> <b>Padded Text:</b> <p columns=\"50\">{paddedText}</p><br> <b>Cipher Text:</b> <textarea readonly=\"True\" cols=\"50\">{encrMsg}</textarea>"
-    decrPrintData=f"<b>Private Key:</b> <textarea readonly=\"True\" cols=\"50\">{botPrivate}</textarea><br> <b>IV:</b> <textarea readonly=\"True\" cols=\"50\">{botIV}</textarea><br> <b>Padded Text:</b> <p columns=\"50\">{paddedUnenc}</p><br> <b>Decrypted Text:</b> <textarea readonly=\"True\" cols=\"50\">{decrMsg}</textarea>"
+    encrPrintData=f"<b>Private Key:</b> <textarea readonly=\"True\" cols=\"50\">{userPrivate}</textarea><br> <b>IV:</b> <textarea readonly=\"True\" cols=\"50\">{userIV}</textarea><br> <b>Padded Text:(Padding does not always show due to formatting) </b> <p columns=\"50\">{paddedText}</p><br> <b>Cipher Text:</b> <textarea readonly=\"True\" cols=\"50\">{encrMsg}</textarea>"
+    decrPrintData=f"<b>Private Key:</b> <textarea readonly=\"True\" cols=\"50\">{botPrivate}</textarea><br> <b>IV:</b> <textarea readonly=\"True\" cols=\"50\">{botIV}</textarea><br> <b>Padded Text: (Padding does not always show due to formatting) </b> <p columns=\"50\">{paddedUnenc}</p><br> <b>Decrypted Text:</b> <textarea readonly=\"True\" cols=\"50\">{decrMsg}</textarea>"
 
-    socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,encrPrintData,decrPrintData,userPrintData,botPrintData,userSharedKey,botSharedKey],broadcast=True)
+    socketio.emit('messageEncryptionEvent',[encrMsgForm,decrMsgForm,encrPrintData,decrPrintData,userPrintData,botPrintData,userSharedKey,botSharedKey],broadcast=True)
 
 @socketio.on('message')
 def encrypt(msg):
