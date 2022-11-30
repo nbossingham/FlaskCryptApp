@@ -30,7 +30,7 @@ class AESCipher(object):
         iv = bytes.fromhex("A30D2848066868576B62A8E7DF2EBF48")
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         encrypted_text = cipher.encrypt(plain_text.encode())
-        return b64encode(iv + encrypted_text).decode("utf-8")
+        return b64encode(iv + encrypted_text).decode("utf-8"),iv,plain_text
 
     def decrypt(self, encrypted_text):
         encrypted_text = b64decode(encrypted_text)
@@ -213,7 +213,10 @@ def messageSent(msg):
     botPrintData=f"<b>Private Key:</b> 0x{botPrivate:X}<br> <b>Public X:</b> 0x{botPublicX:X}<br> <b>Public Y:</b> 0x{botPublicY:X}"
     userSharedKey=f" <b>Shared X:</b> 0x{userSharedX:X}<br> <b>Public Y:</b> 0x{userSharedY:X}"
     botSharedKey=f" <b>Shared X:</b>  0x{botSharedX:X}<br> <b>Public Y:</b> 0x{botSharedY:X}"
-    encrMsg,decrMsg = aesEncrypt(msg,userSharedX)
+    user = AESCipher(key="0x{userSharedX:X}")
+	bot = AESCipher(key="0x{botSharedX:X}")
+	encrMsg,userIV,paddedText= user.encrypt(msg)
+	decrMsg = bot.decrypt(encrMsg)
     socketio.emit('messageEncryptionEvent',[encrMsg,decrMsg,userSharedKey,botSharedKey],broadcast=True)
 
 @socketio.on('message')
