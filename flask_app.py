@@ -186,7 +186,7 @@ def aesEncrypt(msg,sharedKey): #Going to use AES with CBC
 	
 def aesDecrypt(encrMsg,SharedKey):
 	print(f"Encr Mesage:{encrMsg}")
-	aes = AESCipher(key=hex(0x{userSharedX:X}))
+	aes = AESCipher(key="0x{userSharedX:X}")
 	decrMsg = aes.decrypt(msg)
 	print(f"Mesage:{decrMsg}")
 	return decrMsg
