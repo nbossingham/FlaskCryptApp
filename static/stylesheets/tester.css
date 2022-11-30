@@ -10,6 +10,17 @@
     text-align: center;
     border-radius: 18px;
   }
+  textarea{
+     border: none;
+    font-family: Helvetica;
+    padding: 1px 1px;
+    background-color: #efefef;
+    border: none;
+    cursor: text;
+    color: black;
+    text-align: center;
+    border-radius: 18px;
+}
   p{
      padding: 2px;
       margin: 2px;
@@ -149,7 +160,7 @@ ul li {
     padding: 2px 8px 2px 8px;
     color: black;
     list-style: none;
-    background-color: #ceced0;
+    background-color: #efefef;
     border-radius: 18px;
     border-style: solid;
     border-color: white;
