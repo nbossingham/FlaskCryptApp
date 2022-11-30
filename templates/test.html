@@ -39,8 +39,8 @@
 		console.log('Received message');
 	});
 	socket.on('messageEncryptionEvent', function(data) {
-		$('#encrypt1').text(data[0]);
-		$('#encrypt2').text(data[1]);
+		$('#encrypt1').html(data[0]);
+		$('#encrypt2').html(data[1]);
 		$('#encrypt3').html(data[2]);
 		$('#encrypt4').html(data[3]);
 		$('#userData').html(data[4]);
