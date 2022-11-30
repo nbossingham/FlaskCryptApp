@@ -23,7 +23,7 @@ class AESCipher(object):
     def __init__(self, key):
         self.block_size = AES.block_size
         self.key = hashlib.sha256(key.encode()).digest()
-	print("Initialized")
+	
 
     def encrypt(self, plain_text):
         plain_text = self.__pad(plain_text)
@@ -179,6 +179,7 @@ currentMsg=""
 def aesEncrypt(msg,sharedKey): #Going to use AES with CBC
 	print(f"Mesage:{msg}")
 	aes = AESCipher(sharedKey)
+	print("Initialized")
 	encrMsg = aes.encrypt(msg)
 	print(f"Encr Mesage:{encrMsg}")
 	return encrMsg
