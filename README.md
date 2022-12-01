@@ -1,12 +1,17 @@
 # FlaskCryptApp
- 
+
+GitHub Link: https://github.com/nbossingham/FlaskCryptApp
+
 How Everything Works:
   This is a Flask App that uses socketio to create a pseudo chat app. As a form of demonstration, 
   I have coded an ECDH key exchange and a CBC AES encryption.
   
   The Key exchange and AES Encryption are shown throughout their process in the website.
   
-  The url for this flask app is currently nbossinghamw.onrender.com
+  Due to the nature of the program, it is not run locally. To access the program go to the url below.
+  The url for this flask app is:
+  
+                            nbossinghamw.onrender.com
   
   Some Considerations:
    
